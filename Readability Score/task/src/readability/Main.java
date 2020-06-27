@@ -10,7 +10,6 @@ public class Main {
         double index;
 
         index = 4.71 * (double)charsCounter / wordsCounter + 0.5 *(double)wordsCounter / sentencesCounter - 21.43;
-        System.out.println("The score is: " + index);
         switch ((int)Math.round(index + 0.5)) {
             case 1:
                 result = "5-6";
@@ -58,7 +57,7 @@ public class Main {
                 result = "24+";
                 break;
         }
-        System.out.println("Automated Readability Index: " + index + " (about " + result + " year olds.)");
+        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds.)", index, result);
     }
 
     public static void getFK() {
@@ -71,6 +70,15 @@ public class Main {
 
     public static void getCL() {
 
+    }
+
+    public static int getSyllables(String str) {
+        int counter = 0;
+        if (str.charAt(str.length()-1) == 'e') str = str.substring(0, str.length() - 1);
+        str = str.replaceAll("[eyouaiEYOUAI]{1,3}", " ");
+        for (int i = 0; i < str.length(); i++)
+            if (str.charAt(i) == ' ') counter++;
+        return (counter == 0)? 1 : counter;
     }
 
     public static void main(String[] args) {
@@ -120,8 +128,19 @@ public class Main {
                         wordsCounter++;
                     }
                 }
+
                 //We count syllables and polysyllables
                 syllables = result;
+                //Remove all and leave only words
+                syllables = syllables.replaceAll("[\\.,!?-]","");
+                syllables = syllables.replaceAll("  "," ");
+                //Split all text into words
+                String[] wordsArray = syllables.split(" ");
+                for (String str : wordsArray) {
+                    int nSyllables = getSyllables(str);
+                    syllablesCounter +=nSyllables;
+                    if (nSyllables >= 3) polysyllablesCounter++;
+                }
 
                 //We count chars
                 result = result.replaceAll(" ","");

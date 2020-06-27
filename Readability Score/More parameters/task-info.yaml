@@ -464,9 +464,10 @@ feedback:
   message: |-
     Wrong answer in test #1
 
-    There is no syllables in output
+    There is no Automated Readability Index in output
 
     Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
 
     ---
 
@@ -478,7 +479,9 @@ feedback:
     Words: 108
     Sentences: 6
     Characters: 580
-    The score is: 12.864444444444452
-    This text should be understood by 18-24 year olds.
-  time: Sat, 27 Jun 2020 08:49:03 UTC
+    Syllables: 196
+    Polysyllables: 20
+    Enter the score you want to calculate (ARI, FK, SMOG, CL, all): &gt; all
+    Automated Readability Index: 12.86 (about 18-24  year olds.)
+  time: Sat, 27 Jun 2020 17:26:22 UTC
 record: -1
