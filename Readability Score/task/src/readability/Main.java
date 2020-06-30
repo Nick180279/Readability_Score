@@ -5,11 +5,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void getARI(int charsCounter, int wordsCounter, int sentencesCounter) {
-        String result;
-        double index;
 
-        index = 4.71 * (double)charsCounter / wordsCounter + 0.5 *(double)wordsCounter / sentencesCounter - 21.43;
+    public static String calculatedResult(double index) {
+        String result;
         switch ((int)Math.round(index + 0.5)) {
             case 1:
                 result = "6";
@@ -57,7 +55,13 @@ public class Main {
                 result = "24+";
                 break;
         }
-        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds.)", index, result);
+        return result;
+    }
+
+    public static void getARI(int charsCounter, int wordsCounter, int sentencesCounter) {
+        double index;
+        index = 4.71 * (double)charsCounter / wordsCounter + 0.5 *(double)wordsCounter / sentencesCounter - 21.43;
+        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds.)", index, calculatedResult(index));
     }
 
     public static void getFK() {
