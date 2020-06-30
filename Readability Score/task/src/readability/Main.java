@@ -6,74 +6,85 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static String calculatedResult(double index) {
-        String result;
+    public static int calculatedResult(double index) {
+        int  result;
         switch ((int)Math.round(index + 0.5)) {
             case 1:
-                result = "6";
+                result = 6;
                 break;
             case 2:
-                result = "7";
+                result = 7;
                 break;
             case 3:
-                result = "9";
+                result = 9;
                 break;
             case 4:
-                result = "10";
+                result = 10;
                 break;
             case 5:
-                result = "11";
+                result = 11;
                 break;
             case 6:
-                result = "12";
+                result = 12;
                 break;
             case 7:
-                result = "13";
+                result = 13;
                 break;
             case 8:
-                result = "14";
+                result = 14;
                 break;
             case 9:
-                result = "15";
+                result = 15;
                 break;
             case 10:
-                result = "16";
+                result = 16;
                 break;
             case 11:
-                result = "17";
+                result = 17;
                 break;
             case 12:
-                result = "18";
+                result = 18;
                 break;
             case 13:
-                result = "24";
-                break;
-            case 14:
-                result = "24+";
+                result = 24;
                 break;
             default:
-                result = "24+";
+                result = 25;
                 break;
         }
         return result;
     }
 
-    public static void getARI(int charsCounter, int wordsCounter, int sentencesCounter) {
-        double index;
-        index = 4.71 * (double)charsCounter / wordsCounter + 0.5 *(double)wordsCounter / sentencesCounter - 21.43;
-        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds.)", index, calculatedResult(index));
+    public static int getARI(int charsCounter, int wordsCounter, int sentencesCounter) {
+        double index = 4.71 * (double)charsCounter / wordsCounter + 0.5 *(double)wordsCounter / sentencesCounter - 21.43;
+        int result = calculatedResult(index);
+        String showRes = result <= 24 ? String.valueOf(result) : "24+";
+        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds.) \n", index, showRes);
+        return result;
     }
 
-    public static void getFK() {
-
+    public static int getFK(int syllablesCounter, int wordsCounter, int sentencesCounter) {
+        double index = 0.39 * (double)wordsCounter / sentencesCounter + 11.8 * (double)syllablesCounter / wordsCounter - 15.59;
+        int result = calculatedResult(index);
+        String showRes = result <= 24 ? String.valueOf(result) : "24+";
+        System.out.printf("Simple Measure of Gobbledygook: %4.2f (about %s  year olds.) \n", index, showRes);
+        return result;
     }
 
-    public static void getSMOG() {
-
+    public static int getSMOG(int polysyllablesCounter, int sentencesCounter) {
+        double index = 1.043 * Math.sqrt( 30 * (double)polysyllablesCounter / sentencesCounter) + 3.1291;
+        int result = calculatedResult(index);
+        String showRes = result <= 24 ? String.valueOf(result) : "24+";
+        System.out.printf("Flesch–Kincaid readability tests: %4.2f (about %s  year olds.) \n", index, showRes);
+        return result;
     }
 
-    public static void getCL() {
-
+    public static int getCL(int charsCounter, int wordsCounter, int sentencesCounter) {
+        double index = 0.0588 * (100 * (double)charsCounter / wordsCounter) - 0.296 * (100 * (double)sentencesCounter / wordsCounter) - 15.8;
+        int result = calculatedResult(index);
+        String showRes = result <= 24 ? String.valueOf(result) : "24+";
+        System.out.printf("Coleman–Liau index: %4.2f (about %s  year olds.) \n", index, showRes);
+        return result;
     }
 
     public static int getSyllables(String str) {
@@ -90,6 +101,10 @@ public class Main {
         String pathToFile;
         String syllables;
         String choice;
+        int indxARI;
+        int indxFK;
+        int indxSMOG;
+        int indxCL;
         int sentencesCounter = 0;
         int wordsCounter = 1;
         int charsCounter = 0;
@@ -160,22 +175,23 @@ public class Main {
                 System.out.print("Enter the score you want to calculate (ARI, FK, SMOG, CL, all): ");
                 switch (inputScanner.next()) {
                     case "ARI":
-                        getARI(charsCounter, wordsCounter, sentencesCounter);
+                        indxARI = getARI(charsCounter, wordsCounter, sentencesCounter);
                         break;
                     case "FK":
-                        getFK();
+                        indxFK = getFK(syllablesCounter, wordsCounter, sentencesCounter);
                         break;
                     case "SMOG":
-                        getSMOG();
+                        indxSMOG = getSMOG(polysyllablesCounter, sentencesCounter);
                         break;
                     case "CL":
-                        getCL();
+                        indxCL = getCL(charsCounter, wordsCounter, sentencesCounter);
                         break;
                     case "all":
-                        getARI(charsCounter, wordsCounter, sentencesCounter);
-                        getFK();
-                        getSMOG();
-                        getCL();
+                        indxARI = getARI(charsCounter, wordsCounter, sentencesCounter);
+                        indxFK = getFK(syllablesCounter, wordsCounter, sentencesCounter);
+                        indxSMOG = getSMOG(polysyllablesCounter, sentencesCounter);
+                        indxCL = getCL(charsCounter, wordsCounter, sentencesCounter);
+                        System.out.printf("This text should be understood in average by %4.2f (year olds.) \n", (double)(indxARI + indxFK + indxCL + indxSMOG) / 4);
                         break;
                 }
 
