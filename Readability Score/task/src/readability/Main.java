@@ -8,7 +8,7 @@ public class Main {
 
     public static int calculatedResult(double index) {
         int  result;
-        switch ((int)Math.round(index + 0.5)) {
+        switch ((int)Math.round(index)) {
             case 1:
                 result = 6;
                 break;
@@ -59,7 +59,7 @@ public class Main {
         double index = 4.71 * (double)charsCounter / wordsCounter + 0.5 *(double)wordsCounter / sentencesCounter - 21.43;
         int result = calculatedResult(index);
         String showRes = result <= 24 ? String.valueOf(result) : "24+";
-        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds.) \n", index, showRes);
+        System.out.printf("Automated Readability Index: %4.2f (about %s  year olds). \n", index, showRes);
         return result;
     }
 
@@ -67,7 +67,7 @@ public class Main {
         double index = 0.39 * (double)wordsCounter / sentencesCounter + 11.8 * (double)syllablesCounter / wordsCounter - 15.59;
         int result = calculatedResult(index);
         String showRes = result <= 24 ? String.valueOf(result) : "24+";
-        System.out.printf("Simple Measure of Gobbledygook: %4.2f (about %s  year olds.) \n", index, showRes);
+        System.out.printf("Flesch–Kincaid readability tests: %4.2f (about %s  year olds). \n", index, showRes);
         return result;
     }
 
@@ -75,7 +75,7 @@ public class Main {
         double index = 1.043 * Math.sqrt( 30 * (double)polysyllablesCounter / sentencesCounter) + 3.1291;
         int result = calculatedResult(index);
         String showRes = result <= 24 ? String.valueOf(result) : "24+";
-        System.out.printf("Flesch–Kincaid readability tests: %4.2f (about %s  year olds.) \n", index, showRes);
+        System.out.printf("Simple Measure of Gobbledygook: %4.2f (about %s  year olds). \n", index, showRes);
         return result;
     }
 
@@ -83,7 +83,7 @@ public class Main {
         double index = 0.0588 * (100 * (double)charsCounter / wordsCounter) - 0.296 * (100 * (double)sentencesCounter / wordsCounter) - 15.8;
         int result = calculatedResult(index);
         String showRes = result <= 24 ? String.valueOf(result) : "24+";
-        System.out.printf("Coleman–Liau index: %4.2f (about %s  year olds.) \n", index, showRes);
+        System.out.printf("Coleman–Liau index: %4.2f (about %s  year olds). \n", index, showRes);
         return result;
     }
 
@@ -173,6 +173,7 @@ public class Main {
                 System.out.println("Syllables: " + syllablesCounter);
                 System.out.println("Polysyllables: " + polysyllablesCounter);
                 System.out.print("Enter the score you want to calculate (ARI, FK, SMOG, CL, all): ");
+                System.out.println();
                 switch (inputScanner.next()) {
                     case "ARI":
                         indxARI = getARI(charsCounter, wordsCounter, sentencesCounter);
@@ -191,7 +192,8 @@ public class Main {
                         indxFK = getFK(syllablesCounter, wordsCounter, sentencesCounter);
                         indxSMOG = getSMOG(polysyllablesCounter, sentencesCounter);
                         indxCL = getCL(charsCounter, wordsCounter, sentencesCounter);
-                        System.out.printf("This text should be understood in average by %4.2f (year olds.) \n", (double)(indxARI + indxFK + indxCL + indxSMOG) / 4);
+                        System.out.println();
+                        System.out.printf("This text should be understood in average by %4.2f (year olds). \n", (double)(indxARI + indxFK + indxCL + indxSMOG) / 4);
                         break;
                 }
 

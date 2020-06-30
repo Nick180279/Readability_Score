@@ -459,26 +459,9 @@ files:
     }
   learner_created: true
 feedback_link: https://hyperskill.org/projects/39/stages/208/implement
-status: Failed
+status: Solved
 feedback:
-  message: "Wrong answer in test #1\n\nThere is no Automated Readability Index in\
-    \ output\n\nPlease find below the output of your program during this failed test.\n\
-    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
-    \n---\n\nArguments: input.txt\n\nThe text is:\nReadability is the ease with which\
-    \ a reader can understand a written text. In natural language, the readability\
-    \ of text depends on its content and its presentation. Researchers have used various\
-    \ factors to measure readability. Readability is more than simply legibility,\
-    \ which is a measure of how easily a reader can distinguish individual letters\
-    \ or characters from each other. Higher readability eases reading effort and speed\
-    \ for any reader, but it is especially important for those who do not have high\
-    \ reading comprehension. In readers with poor reading comprehension, raising the\
-    \ readability level of a text from mediocre to good can make the difference between\
-    \ success and failure\n\nWords: 108\nSentences: 6\nCharacters: 580\nSyllables:\
-    \ 196\nPolysyllables: 20\nEnter the score you want to calculate (ARI, FK, SMOG,\
-    \ CL, all): &gt; all\nAutomated Readability Index: 12.86 (about 24  year olds.)\
-    \ \nSimple Measure of Gobbledygook: 12.84 (about 24  year olds.) \nFlesch–Kincaid\
-    \ readability tests: 13.56 (about 24+  year olds.) \nColeman–Liau index: 14.13\
-    \ (about 24+  year olds.) \nThis text should be understood in average by 24.50\
-    \ (year olds.)"
-  time: Tue, 30 Jun 2020 07:52:24 UTC
+  message: Congratulations! Continue on <a href="https://hyperskill.org/projects/39/stages/208/implement">JetBrains
+    Academy</a>
+  time: Tue, 30 Jun 2020 08:22:44 UTC
 record: -1
